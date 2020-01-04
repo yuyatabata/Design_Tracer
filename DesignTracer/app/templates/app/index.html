@@ -1,0 +1,57 @@
+{% load static %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DragDrop</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <!-- <header>
+        <div class = "container">
+            <h1><a href="{% url 'app:index' %}">DesignTracer</a></h1>
+            <div class="header-menu">
+                <a href="{% url 'app:images_new' %}">投稿</a>
+                {% if request.user.is_authenticated %}
+                    <a href = "{% url 'app:users_detail' request.user.id %}">マイページ</a>
+                    <a href = "{% url 'app:logout' %}">ログアウト</a>
+                {% else %}
+                    <a href = "{% url 'app:login' %}">ログイン</a>
+                    <a href = "{% url 'app:signup' %}">新規登録</a>
+                {% endif %}
+            </div>
+        </div>
+    </header> -->
+    <div class="container">
+        <form action="{% url 'app:index' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div id="drag-drop-area">
+                <div class="drag-drop-inside">
+                    <p class="drag-drop-info">ここにファイルをドロップ</p>
+                    <p>または</p>
+                    <p class="drag-drop-buttons"><input id="fileInput" type="file" value="ファイルを選択" name="image"></p>
+                    <button type="submit" class="btn btn-primary">サブミット</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- アップロードした画像を表示 -->
+    
+    <div class="img-container"> 
+        {% for img in images %}
+            <img src="{{ img.image_f }}" class="image-img">
+        {% empty %}
+            <p>empty</p>
+        {% endfor %}
+    </div>
+
+</body>
+
+<script type="text/javascript" src="{% static 'js/dragdrop.js' %}"></script>
+</html>
