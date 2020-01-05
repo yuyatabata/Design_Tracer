@@ -17,7 +17,16 @@ def index(request):
             img.image_f = uploaded_file_url
             img.save()
             images = Image.objects.all().order_by("-created_at")
-        return render(request, 'index.html', {'images':images})
+        return render(request, 'app/index.html', {'images':images})
     else:
         images = Image.objects.all().order_by("-created_at")
-        return render(request, 'index.html', {'images':images})
+        return render(request, 'app/index.html', {'images':images})
+
+def images_detail(request,pk):
+    images = Image.objects.all().order_by("-created_at")
+    return render(request,'app/images_detail.html', {'images':images})
+
+def images_delete(request,pk):
+    image = get_object_or_404(Image,pk=pk)
+    image.delete()
+    return redirect('app:users_detail',request.user.id)

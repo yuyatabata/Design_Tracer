@@ -1,0 +1,32 @@
+{% load static %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DragDrop</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="image-detail">
+
+            <img src="{{ image.image.url }}" class="image-img">
+            
+            <h2>{{ image.title }}</h2>
+            <p>{{ image.comment }}</p>
+            
+            {% if request.user == image.user %}
+            <form method="post" action="{% url 'app:images_delete' image.id %}">{% csrf_token %}
+                <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+            </form>
+            {% endif %}
+            
+        </div>
+    </div>
+</body>
