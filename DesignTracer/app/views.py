@@ -15,6 +15,8 @@ def index(request):
             uploaded_file_url = fs.url(filename)
             img = Image()
             img.image_f = uploaded_file_url
+            print("uploaded_file_url:",uploaded_file_url)
+            print("image_f:",img.image_f)
             img.save()
             images = Image.objects.all().order_by("-created_at")
         return render(request, 'app/index.html', {'images':images})
