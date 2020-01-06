@@ -24,13 +24,17 @@
                     <button type="submit" class="btn btn-primary">サブミット</button>
                 </div>
             </div>
+            <tr>
+              <th>タイトル</th>
+              <td>{{ Image.title }}</td>
+            </tr>
         </form>
     </div>
-    
+
     <!-- アップロードした画像を表示 -->
-    
-    <div class="img-container"> 
-        {% for img in images %}
+
+    <div class="img-container">
+          {% for img in images %}
             <div class='img'>
                 <a href="{% url 'app:images_detail' img.id %}">
                     <img src="{{ img.image_f }}" class="image-img">

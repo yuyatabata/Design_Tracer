@@ -4,6 +4,7 @@ from django.contrib import messages
 import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from django.dispatch import receiver
 
 # Create your views here.
 def index(request):
@@ -25,10 +26,15 @@ def index(request):
         return render(request, 'app/index.html', {'images':images})
 
 def images_detail(request,pk):
-    images = Image.objects.all().order_by("-created_at")
-    return render(request,'app/images_detail.html', {'images':images})
+    image = get_object_or_404(Image,pk=pk)
+    return render(request,'app/images_detail.html', {'image':image})
 
 def images_delete(request,pk):
     image = get_object_or_404(Image,pk=pk)
     image.delete()
-    return redirect('app:users_detail',request.user.id)
+    return render(request, 'app/index.html', {'images':images})
+    # return redirect('app:users_detail',request.user.id)
+
+# @receiver(images_delete, sender)
+# def delete_file(sender, instance, **kwargs):
+#     instance.file_field.delete(False)
