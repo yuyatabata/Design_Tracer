@@ -31,7 +31,11 @@
     
     <div class="img-container"> 
         {% for img in images %}
-            <img src="{{ img.image_f }}" class="image-img">
+            <div class='img'>
+                <a href="{% url 'app:images_detail' img.id %}">
+                    <img src="{{ img.image_f }}" class="image-img">
+                </a>
+            </div>
         {% empty %}
             <p>empty</p>
         {% endfor %}
