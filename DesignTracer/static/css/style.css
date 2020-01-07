@@ -1,13 +1,25 @@
+.area-left {
+  width: 400px;
+  height: 300px;
+  background-color: #FF0000;
+}
+
+.area-right {
+  width: 400px;
+  height: 300px;
+  background-color: #0000FF;
+}
+
 .container {
   margin-top: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
-  /* background-color: #EFEFEF; */
+  background-color: #EFEFEF;
 }
 
-.no-active {
+/* .no-active {
     display: none;
- }
+ } */
 
 .drag-drop-area {
   margin-right: auto;

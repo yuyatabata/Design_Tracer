@@ -9,37 +9,43 @@
 
 <head>
     <title>DragDrop</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 
 <body>
 
     <div class="container">
-        <form action="{% url 'app:index' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
-            <div id="drag-drop-area">
-                <div class="drag-drop-inside">
-                    <p class="drag-drop-info">ここにファイルをドロップ</p>
-                    <p>または</p>
-                    <p class="drag-drop-buttons"><input id="fileInput" type="file" value="ファイルを選択" name="image"></p>
+        <div class="row">
+            <form action="{% url 'app:index' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="col-lg-6" id="drag-drop-area">
+                    <div class="drag-drop-inside">
+                        <p class="drag-drop-info">ここにファイルをドロップ</p>
+                        <p>または</p>
+                        <p class="drag-drop-buttons"><input id="fileInput" type="file" value="ファイルを選択" name="image"></p>
+                    </div>
                 </div>
-            </div>
-            <div id="text-area">
-              <tr>
-                <th>タイトル</th>
-                <td>{{ form.title }}</td>
-              </tr>
-              <tr>
-                <th>コメント</th>
-                <td>{{ form.comment }}</td>
-              </tr>
-            </div>
-            <button type="submit" class="btn btn-primary">サブミット</button>
-        </form>
+                <div class="col-lg-6" id="text-area">
+                <tr>
+                    <th>タイトル</th>
+                    <td>{{ form.title }}</td>
+                </tr>
+                <tr>
+                    <th>コメント</th>
+                    <td>{{ form.comment }}</td>
+                </tr>
+                </div>
+                <button type="submit" class="btn btn-primary">サブミット</button>
+            </form>
+        </div>
     </div>
 
     <!-- CSS効かないのでテスト -->
-    <div id="drag-drop-area"></div>
-    <div id="text-area"></div>
+    <div id="area-left">aaa</div>
+    <div id="area-right">bbb</div>
+    <!-- <div id="col-lg-6" style="background:orange">aaa</div>
+    <div id="col-lg-6" style="background:pink">bbb</div> -->
     <!-- アップロードした画像を表示 -->
 
     <div class="img-container">
