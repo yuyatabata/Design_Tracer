@@ -34,11 +34,9 @@ def images_detail(request,pk):
     return render(request,'app/images_detail.html', {'image':image})
 
 def images_delete(request,pk):
+    form = ImageForm()
+    images = Image.objects.all().order_by("-created_at")
     image = get_object_or_404(Image,pk=pk)
     image.delete()
-    return render(request, 'app/index.html', {'images':images})
+    return render(request, 'app/index.html', {'images':images,'form':form})
     # return redirect('app:users_detail',request.user.id)
-
-# @receiver(images_delete, sender)
-# def delete_file(sender, instance, **kwargs):
-# instance.file_field.delete(False)

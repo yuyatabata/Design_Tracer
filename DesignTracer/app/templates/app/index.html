@@ -21,16 +21,25 @@
                     <p class="drag-drop-info">ここにファイルをドロップ</p>
                     <p>または</p>
                     <p class="drag-drop-buttons"><input id="fileInput" type="file" value="ファイルを選択" name="image"></p>
-                    <button type="submit" class="btn btn-primary">サブミット</button>
                 </div>
             </div>
-            <tr>
-              <th>タイトル</th>
-              <td>{{ form.title }}</td>
-            </tr>
+            <div id="text-area">
+              <tr>
+                <th>タイトル</th>
+                <td>{{ form.title }}</td>
+              </tr>
+              <tr>
+                <th>コメント</th>
+                <td>{{ form.comment }}</td>
+              </tr>
+            </div>
+            <button type="submit" class="btn btn-primary">サブミット</button>
         </form>
     </div>
 
+    <!-- CSS効かないのでテスト -->
+    <div id="drag-drop-area"></div>
+    <div id="text-area"></div>
     <!-- アップロードした画像を表示 -->
 
     <div class="img-container">
