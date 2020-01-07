@@ -16,7 +16,7 @@
     <div class="container">
         <div class="image-detail">
 
-            <img src="{{ image.image.url }}" class="image-img">
+            <img src="{{ image.image_f }}" class="image-img">
             
             <h2>{{ image.title }}</h2>
             <p>{{ image.comment }}</p>
@@ -26,7 +26,6 @@
                 <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
             </form>
             {% endif %}
-            
         </div>
     </div>
 </body>

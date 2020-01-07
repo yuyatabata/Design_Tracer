@@ -4,31 +4,41 @@ from django.contrib import messages
 import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from .forms import ImageForm
 
 # Create your views here.
 def index(request):
     if request.method == "POST":
         updata = request.FILES['image']
+        form = ImageForm(request.POST, request.FILES)
         if updata != None:
             fs = FileSystemStorage()
             filename = fs.save(updata.name, updata)
             uploaded_file_url = fs.url(filename)
-            img = Image()
+            img = form.save(commit = False)
+            # img = Image()
             img.image_f = uploaded_file_url
             print("uploaded_file_url:",uploaded_file_url)
             print("image_f:",img.image_f)
+            print("title:",img.title)
             img.save()
             images = Image.objects.all().order_by("-created_at")
-        return render(request, 'app/index.html', {'images':images})
+        return render(request, 'app/index.html', {'images':images,'form':form})
     else:
         images = Image.objects.all().order_by("-created_at")
-        return render(request, 'app/index.html', {'images':images})
+        form = ImageForm()
+        return render(request, 'app/index.html', {'images':images,'form':form})
 
 def images_detail(request,pk):
-    images = Image.objects.all().order_by("-created_at")
-    return render(request,'app/images_detail.html', {'images':images})
+    image = get_object_or_404(Image,pk=pk)
+    return render(request,'app/images_detail.html', {'image':image})
 
 def images_delete(request,pk):
     image = get_object_or_404(Image,pk=pk)
     image.delete()
-    return redirect('app:users_detail',request.user.id)
+    return render(request, 'app/index.html', {'images':images})
+    # return redirect('app:users_detail',request.user.id)
+
+# @receiver(images_delete, sender)
+# def delete_file(sender, instance, **kwargs):
+#     instance.file_field.delete(False)
