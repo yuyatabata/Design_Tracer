@@ -41,4 +41,4 @@ def images_delete(request,pk):
 
 # @receiver(images_delete, sender)
 # def delete_file(sender, instance, **kwargs):
-#     instance.file_field.delete(False)
+# instance.file_field.delete(False)
