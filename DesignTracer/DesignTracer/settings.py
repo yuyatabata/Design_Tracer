@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'widget_tweaks',
     'django_cleanup',
+    'bootstrap_toolkit',
 ]
 
 MIDDLEWARE = [

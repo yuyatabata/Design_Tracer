@@ -2,7 +2,9 @@
 
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
+{% load bootstrap_toolkit %}
 {% load widget_tweaks %}
+
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +28,7 @@
                         <p class="drag-drop-buttons"><input id="fileInput" type="file" value="ファイルを選択" name="image"></p>
                     </div>
                 </div>
-                <div class="col-lg-6" id="text-area">
+                <div class="col-lg-6 control-group" id="text-area">
                 <tr>
                     <th>タイトル</th>
                     <td>{{ form.title }}</td>
@@ -42,10 +44,11 @@
     </div>
 
     <!-- CSS効かないのでテスト -->
-    <div id="area-left">aaa</div>
-    <div id="area-right">bbb</div>
-    <!-- <div id="col-lg-6" style="background:orange">aaa</div>
-    <div id="col-lg-6" style="background:pink">bbb</div> -->
+    <div class="row">
+        <div id="col-lg-6" style="background:orange">aaa</div>
+        <div id="col-lg-6" style="background:pink">bbb</div>
+    </div>
+
     <!-- アップロードした画像を表示 -->
 
     <div class="img-container">
