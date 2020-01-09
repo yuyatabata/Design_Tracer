@@ -19,8 +19,8 @@
 <body>
 
     <div class="container">
-        <div class="row">
-            <form action="{% url 'app:index' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <form action="{% url 'app:index' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div class="row">
                 <div class="col-lg-6" id="drag-drop-area">
                     <div class="drag-drop-inside">
                         <p class="drag-drop-info">ここにファイルをドロップ</p>
@@ -28,19 +28,23 @@
                         <p class="drag-drop-buttons"><input id="fileInput" type="file" value="ファイルを選択" name="image"></p>
                     </div>
                 </div>
-                <div class="col-lg-6 control-group" id="text-area">
-                <tr>
-                    <th>タイトル</th>
-                    <td>{{ form.title }}</td>
-                </tr>
-                <tr>
-                    <th>コメント</th>
-                    <td>{{ form.comment }}</td>
-                </tr>
+                <div class="col-lg-6" id="text-area">
+                    <div class="form-group">
+                        <tr>
+                            <th>タイトル</th>
+                            <td><input class="form-control" title = "{{ form.title }}"></td>
+                        </tr>
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <th>コメント</th>
+                            <td><input class="form-control" comment = {{ form.comment }}></td>
+                        </tr>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">サブミット</button>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 
     <!-- CSS効かないのでテスト -->
