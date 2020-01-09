@@ -29,16 +29,10 @@
                 </div>
                 <div class="col-lg-6" id="text-area">
                     <div class="form-group">
-                        <tr>
-                            <th>タイトル</th>
-                            <td><input class="form-control" title = {{ form.title }}/></td>
-                        </tr>
+                        {{ form.title|add_class:'form-control' }}
                     </div>
                     <div class="form-group">
-                        <tr>
-                            <th>コメント</th>
-                            <td><input class="form-control" comment = {{ form.comment }}/></td>
-                        </tr>
+                        {{ form.comment|add_class:'form-control' }}                        
                     </div>
                 </div>
             </div>
