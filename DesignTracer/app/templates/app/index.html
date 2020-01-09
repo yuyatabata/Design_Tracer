@@ -17,9 +17,8 @@
 
 
 <body>
-
-    <div class="container">
         <form action="{% url 'app:index' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="container">
             <div class="row">
                 <div class="col-lg-6" id="drag-drop-area">
                     <div class="drag-drop-inside">
@@ -32,26 +31,21 @@
                     <div class="form-group">
                         <tr>
                             <th>タイトル</th>
-                            <td><input class="form-control" title = "{{ form.title }}"></td>
+                            <td><input class="form-control" title = {{ form.title }}/></td>
                         </tr>
                     </div>
                     <div class="form-group">
                         <tr>
                             <th>コメント</th>
-                            <td><input class="form-control" comment = {{ form.comment }}></td>
+                            <td><input class="form-control" comment = {{ form.comment }}/></td>
                         </tr>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">サブミット</button>
             </div>
+            <button type="submit" class="btn btn-primary">サブミット</button>
+          </div>
         </form>
-    </div>
 
-    <!-- CSS効かないのでテスト -->
-    <div class="row">
-        <div id="col-lg-6" style="background:orange">aaa</div>
-        <div id="col-lg-6" style="background:pink">bbb</div>
-    </div>
 
     <!-- アップロードした画像を表示 -->
 
