@@ -1,13 +1,27 @@
-.area-left {
-  width: 400px;
-  height: 300px;
-  background-color: #FF0000;
+header {
+  border-bottom: solid 1px #000;
+  height: 70px;
 }
 
-.area-right {
-  width: 400px;
-  height: 300px;
-  background-color: #0000FF;
+header .container {
+  display: flex;
+  justify-content:space-between ;
+}
+
+header h1{
+  margin:0;
+  height:100%;
+  line-height: 70px;
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+}
+
+.header-menu a {
+  padding: 10px;
+  margin-left: 10px;
 }
 
 .container {

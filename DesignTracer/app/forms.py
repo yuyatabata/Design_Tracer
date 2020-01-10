@@ -7,7 +7,7 @@ class ImageForm(ModelForm):
         model = Image
         fields = ['title', 'comment']
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'タイトル'}),
+            'title': forms.TextInput(attrs={'placeholder': '名前/タイトル'}),
             'comment': forms.Textarea(
-                attrs={'placeholder': 'コメント'}),
+                attrs={'placeholder': 'なぜかっこいいと思ったの？'}),
         }
