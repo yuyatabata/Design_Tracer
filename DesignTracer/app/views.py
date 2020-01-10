@@ -5,6 +5,9 @@ import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from .forms import ImageForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def index(request):
@@ -40,3 +43,23 @@ def images_delete(request,pk):
     image.delete()
     return render(request, 'app/index.html', {'images':images,'form':form})
     # return redirect('app:users_detail',request.user.id)
+
+def users_detail(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    images = Image.objects.all().order_by("-created_at")
+    return render(request, 'app/mypage.html', {'user':user, 'images':images})
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            input_username = form.cleaned_data['username']
+            input_password = form.cleaned_data['password1']
+            new_user = authenticate(username=input_username, password=input_password)
+            if new_user is not None:
+                login(request, new_user)
+                return redirect('app:users_detail', pk=new_user.pk)
+    else:
+        form = UserCreationForm()
+    return render(request, 'app/signup.html', {'form':form})

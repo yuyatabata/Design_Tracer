@@ -1,6 +1,7 @@
 header {
   border-bottom: solid 1px #000;
   height: 70px;
+  margin: 10%;
 }
 
 header .container {
@@ -152,4 +153,3 @@ header h1{
   margin-top: 2%;
   float: right;
 }
-
