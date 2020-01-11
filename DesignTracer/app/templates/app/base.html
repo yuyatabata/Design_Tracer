@@ -1,0 +1,42 @@
+{% load static %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% load bootstrap_toolkit %}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DragDrop</title>
+</head>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+<body>
+    <header>
+        <dic class="container">
+            <h1><a href="{% url 'app:index' %}">DesignTracer</a></h1>
+            <div class="header-menu">
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'app:users_detail' request.user.id %}">マイページ</a>
+                    <a href="{% url 'app:logout' %}">ログアウト</a>
+                {% else %}
+                    <a href="{% url 'app:signup' %}">サインアップ</a>
+                    <a href="{% url 'app:login' %}">ログイン</a>
+                {% endif %}
+            </div>
+        </dic>
+    </header>
+    <div class="container">
+        {% for message in message %}
+            <p class="message-success">{{ message }}</p>
+        {% endfor %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+<script type="text/javascript" src="{% static 'js/dragdrop.js' %}"></script>
+</html>

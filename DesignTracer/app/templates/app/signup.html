@@ -1,56 +1,24 @@
-{% load static %}
-
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
-{% load bootstrap_toolkit %}
+{% extends 'app/base.html' %}
 {% load widget_tweaks %}
-
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>DragDrop</title>
-</head>
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
-
-<body>
-    <header>
-        <dic class="container">
-            <h1><a href="{% url 'app:index' %}">DesignTracer</a></h1>
-            <div class="header-menu">
-                {% if request.user.is_authenticated %}
-                    <a href="{% url 'app:users_detail' request.user.id %}">マイペース</a>
-                    <a href="{% url 'app:logout' %}">ログアウト</a>
-                {% else %}
-                    <a href="{% url 'app:login' %}">ログイン</a>
-                {% endif %}
-            </div>
-        </dic>
-    </header>
+{% block content %}
 
     <h2>ユーザー登録</h2>
 
-  <form method="post" action="{% url 'app:signup' %}">{% csrf_token %}
-    <label>ユーザー名</label>
-    {{form.username}}
-    {{form.username.errors}}
-    <br>
-    <label>パスワード</label>
-    {{form.password1}}
-    {{form.password1.errors}}
-    <br>
-    <label>パスワード確認</label>
-    {{form.password2}}
-    {{form.password2.errors}}
-    <br>
-    <input type="submit" value="登録">
-  </form>
+    <form method="post" action="{% url 'app:signup' %}">{% csrf_token %}
+        <label>ユーザー名</label>
+        {{form.username}}
+        {{form.username.errors}}
+        <br>
+        <label>パスワード</label>
+        {{form.password1}}
+        {{form.password1.errors}}
+        <br>
+        <label>パスワード確認</label>
+        {{form.password2}}
+        {{form.password2.errors}}
+        <br>
+        <input type="submit" value="登録">
+    </form>
 
-  <p><a href="{% url 'app:login' %}">ログインはこちら</a></p>
-</body>
-
-<script type="text/javascript" src="{% static 'js/dragdrop.js' %}"></script>
-</html>
+    <p><a href="{% url 'app:login' %}">ログインはこちら</a></p>
+{% endblock %}

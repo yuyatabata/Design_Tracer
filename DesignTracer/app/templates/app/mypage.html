@@ -1,47 +1,20 @@
-{% load static %}
-
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
-{% load bootstrap_toolkit %}
+{% extends 'app/base.html' %}
 {% load widget_tweaks %}
+{% block content %}
+  <h2 class='user-name'>@{{ user.username }} </h2>
+  {% ifnotequal images.count 0 %}
+    <p>投稿<strong>{{ images.count }}</strong>件</p>
+  {% else %}
+    {% if user == request.user %}
+      <p>初めての投稿をしてみましょう！</p>
+    {% endif %}
+  {% endifnotequal %}
+
+  {% for img in images %}
+    <img src= "{{ img.image_f }}" class="image-img">
+  {% endfor %}
+
+  {% include 'app/img_list.html' %}
+{% endblock %}
 
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>DragDrop</title>
-</head>
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
-<body>
-    <header>
-        <dic class="container">
-            <h1><a href="{% url 'app:index' %}">DesignTracer</a></h1>
-            <div class="header-menu">
-                {% if request.user.is_authenticated %}
-                    <a href="{% url 'app:users_detail' request.user.id %}">マイペース</a>
-                    <a href="{% url 'app:logout' %}">ログアウト</a>
-                {% else %}
-                    <a href="{% url 'app:login' %}">ログイン</a>
-                {% endif %}
-            </div>
-        </dic>
-    </header>
-    <h2 class='user-name'>@{{ user.username }} </h2>
-    {% ifnotequal images.count 0 %}
-      <p>投稿<strong>{{ images.count }}</strong>件</p>
-    {% else %}
-      {% if user == request.user %}
-        <p>初めての投稿をしてみましょう！</p>
-      {% endif %}
-    {% endifnotequal %}
-
-    {% for img in images %}
-      <img src= "{{ img.image_f }}" class="image-img">
-    {% endfor %}
-
-</body>
-<script type="text/javascript" src="{% static 'js/dragdrop.js' %}"></script>
-</html>
