@@ -10,10 +10,6 @@
     {% endif %}
   {% endifnotequal %}
 
-  {% for img in images %}
-    <img src= "{{ img.image_f }}" class="image-img">
-  {% endfor %}
-
   {% include 'app/img_list.html' %}
 {% endblock %}
 

@@ -19,7 +19,7 @@ def index(request):
             filename = fs.save(updata.name, updata)
             uploaded_file_url = fs.url(filename)
             img = form.save(commit = False)
-            # img = Image()
+            img.user = request.user
             img.image_f = uploaded_file_url
             print("uploaded_file_url:",uploaded_file_url)
             print("image_f:",img.image_f)

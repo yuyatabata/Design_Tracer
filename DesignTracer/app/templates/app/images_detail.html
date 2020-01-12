@@ -1,29 +1,44 @@
-{% load static %}
-
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
+{% extends 'app/base.html' %}
 {% load widget_tweaks %}
+{% block content %}
 
-<!DOCTYPE html>
-<html>
+        <div class="image-detail row">
+            <div class="col-lg-4" id="image-img">
+                <img src="{{ image.image_f }}" class="img-fluid">
+            </div>
+            <div class="col-lg-8" id="image-text">
+            
+            <p>{{ image.title }}</p>
+            <table>
+                <tr>
+                    <th>主張の理解</th>
+                </tr>
+                <tr>
+                    <td>{{ image.theme }}</td>
+                </tr>
+                <tr>
+                    <th>分析/言語化</th>
+                </tr>
+                <tr>
+                    <td>{{ image.break_down }}</td>
+                </tr>
+                <tr>
+                    <th>抽象化：外せないキーになる部分は？</th>
+                </tr>
+                <tr>
+                    <td>{{ image.key_point }}</td>
+                </tr>
+                <tr>
+                    <th>投稿日時</th>
+                </tr>
+                <tr>
+                    <td>{{ image.created_at }}</td>
+                </tr>
+            </table>
+            </div>
 
-<head>
-    <title>DragDrop</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-    <div class="container">
-        <div class="image-detail">
-
-            <img src="{{ image.image_f }}" class="image-img">
-            <h2>{{ image.title }}</h2>
-            <p>{{ image.comment }}</p>
-            <p>{{ image.created_at }}</p>
-
-            <form method="post" action="{% url 'app:images_delete' image.id %}">{% csrf_token %}
-                <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
-            </form>
         </div>
-    </div>
-</body>
+        <form method="post" action="{% url 'app:images_delete' image.id %}">{% csrf_token %}
+            <button type="submit" class="btn btn-primary" onclick='return confirm("本当に削除しますか？");'>削除</button>
+        </form>
+{% endblock %}

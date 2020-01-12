@@ -1,14 +1,14 @@
 <div class="img-container">
-    {% for img in images %}
-        <div class='img'>
-            <a href="{% url 'app:images_detail' img.id %}">
-                <img src="{{ img.image_f }}" class="image-img">
-            </a>
-            <div class="image-info">
-                <a href="{% url 'app:users_detail' img.user.id %}">@{{img.user}}</a>
-            </div>
+{% for img in images %}
+    <div class='img'>
+        <a href="{% url 'app:images_detail' img.id %}">
+            <img src="{{ img.image_f }}" class="image-img">
+        </a>
+        <div class="image-info">
+            <a href="{% url 'app:users_detail' img.user.id %}">@{{img.user}}</a>
         </div>
-    {% empty %}
-        <p>empty list</p>
-    {% endfor %}
+    </div>
+{% empty %}
+    <p>empty list</p>
+{% endfor %}
 </div>
