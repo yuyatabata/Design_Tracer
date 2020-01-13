@@ -1,4 +1,4 @@
-# Django×ドラッグ&ドロップで画像アップロード
+# Design_Tracer
 
 ## Overview
 イケてるデザインをトレースして学ぶWebアプリです。
