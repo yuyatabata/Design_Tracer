@@ -18,7 +18,7 @@
 3. ImageFieldに処理したファイルパスを渡す。
 
 ## TechnologyElement
-Django/HTML/CSS/Javascript/Bootstrap/SQLite/AWSなど
+Django/HTML/CSS/Javascript/Bootstrap/SQLite/AWS/Gunicorn/Nginxなど
 
 ## Usage/Demo
 1. ドラッグ&ドロップもしくはアップロードボタンで画像ファイルを選択
